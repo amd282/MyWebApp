@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    // Define Maven options and goals
+                    def mavenHome = tool 'Maven'
+                    def mavenCMD = "${mavenHome}/bin/mvn"
+                    
+                    // Maven build
+                    sh "${mavenCMD} clean install"
+                }
+            }
+        }
+    }
+}
