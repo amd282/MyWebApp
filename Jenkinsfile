@@ -7,10 +7,21 @@ pipeline {
                 script {
                     // Define Maven options and goals
                     def mavenHome = tool name: 'Maven', type: 'maven'
-                    def mavenCMD = "/bin/mvn"
+                    def mavenCMD = "${mavenHome}/bin/mvn"
                     
                     // Maven build
-                    bat "mvn clean install"
+                    bat "${mavenCMD} clean install"
+                    
+                    // Archive the artifacts (WAR file, in this case)
+                    archiveArtifacts 'target/your-web-app.war'
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    // Assuming Jenkins deploys artifacts automatically based on default Maven paths
                 }
             }
         }
