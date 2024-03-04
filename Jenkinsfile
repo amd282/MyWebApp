@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     // Define Maven options and goals
-                    def mavenHome = tool 'Maven'
+                    def mavenHome = tool name: 'Maven', type: 'maven'
                     def mavenCMD = "/bin/mvn"
                     
                     // Maven build
