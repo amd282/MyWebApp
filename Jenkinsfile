@@ -11,9 +11,6 @@ pipeline {
                     
                     // Maven build
                     bat "${mavenCMD} clean install"
-                    
-                    // Archive the artifacts (WAR file, in this case)
-                    archiveArtifacts 'target/your-web-app.war'
                 }
             }
         }
