@@ -10,7 +10,7 @@ pipeline {
                     def mavenCMD = "/bin/mvn"
                     
                     // Maven build
-                    bat " clean install"
+                    bat "mvn clean install"
                 }
             }
         }
