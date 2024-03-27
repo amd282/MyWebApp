@@ -10,7 +10,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image...'
-                bat 'docker build -t asaeed24/mywebapp:latest -f ./Dockerfile .'
+                bat 'docker build -t asaeed24/mywebapp:latest .'
             }
         }
         stage('Push Docker Image') {
