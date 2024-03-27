@@ -16,7 +16,7 @@ pipeline {
         stage('Login to Docker Hub') {
             steps {
                 echo 'Logging in to Docker Hub...'
-                withCredentials([string(credentialsId: 'newdokertoken', variable: 'DOCKER_HUB_TOKEN')]) {
+                withCredentials([string(credentialsId: 'dockertoken', variable: 'DOCKER_HUB_TOKEN')]) {
                     bat 'docker login -u arafa282 -p $DOCKER_HUB_TOKEN'
                 }
 
