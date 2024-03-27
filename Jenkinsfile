@@ -19,7 +19,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'newdokertoken', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
                     script {
                         def registry_url = "registry.hub.docker.com/"
-                        bat "echo ${PASSWORD} | docker login -u ${USER} --password-stdin ${registry_url}"
+                        bat "docker login -u ${USER} -p ${PASSWORD} ${registry_url}"
                     }
                 }
             }
