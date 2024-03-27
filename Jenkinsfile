@@ -19,7 +19,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'dockertoken', variable: 'DOCKER_HUB_TOKEN')]) {
                     bat 'echo %DOCKER_HUB_TOKEN% | docker login -u asaeed24 --password-stdin'
                     bat 'docker tag jenkinsdockerimage:latest asaeed24/jenkins:latest'
-                    bat 'docker push arafa282/jenkins:latest'
+                    bat 'docker push asaeed24/jenkins:latest'
                 }
             }
         }
