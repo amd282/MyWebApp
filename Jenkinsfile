@@ -27,7 +27,8 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 echo 'Pushing Docker image to Docker Hub...'
-                bat "docker push asaeed24/devops:latest"
+                bat "docker tag devops:latest asaeed24/jenkinspipeline:latest"
+                bat "docker push asaeed24/jenkinspipeline:latest"
             }
         }
     }
