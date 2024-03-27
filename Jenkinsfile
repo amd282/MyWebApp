@@ -16,10 +16,11 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 echo 'Pushing Docker image to Docker Hub...'
-                withCredentials([string(credentialsId: 'dockertoken', variable: 'DOCKER_HUB_TOKEN')]) {
-                    bat 'echo %DOCKER_HUB_TOKEN% | docker login -u asaeed24 --password-stdin'
-                    bat 'docker tag jenkinsdockerimage:latest asaeed24/jenkins:latest'
-                    bat 'docker push asaeed24/jenkins:latest'
+                withCredentials([usernamePassword(credentialsId: 'dockertoken', usernameVariable: 'asaeed24', passwordVariable: 'Mahmoud28@')]) {
+                    def registry_url = "registry.hub.docker.com/"
+                    bat "docker login -u $USER -p $PASSWORD ${registry_url}"
+                    bat "docker tag jenkinsdockerimage:latest asaeed24/jenkins:latest"
+                    bat "docker push asaeed24/jenkins:latest"
                 }
             }
         }
