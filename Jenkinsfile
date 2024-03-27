@@ -16,12 +16,10 @@ pipeline {
         stage('Login to Docker Hub') {
             steps {
                 echo 'Logging in to Docker Hub...'
-                withCredentials([usernamePassword(credentialsId: 'newdokertoken', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
-                    script {
-                        def registry_url = "registry.hub.docker.com/"
-                        bat "docker login -u ${USER} -p ${PASSWORD} ${registry_url}"
-                    }
+                withCredentials([string(credentialsId: 'newdokertoken', variable: 'DOCKER_HUB_TOKEN')]) {
+                    bat 'docker login -u arafa282 -p $DOCKER_HUB_TOKEN'
                 }
+
             }
         }
         stage('Push Docker Image') {
