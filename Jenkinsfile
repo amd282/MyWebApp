@@ -16,7 +16,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 echo 'Pushing Docker image to Docker Hub...'
-                withCredentials([usernamePassword(credentialsId: 'dockertoken', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'newdokertoken', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
                     script {
                         def registry_url = "registry.hub.docker.com/"
                         bat "docker login -u ${USER} -p ${PASSWORD} ${registry_url}"
