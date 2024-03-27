@@ -16,8 +16,10 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 echo 'Pushing Docker image to Docker Hub...'
-                bat 'docker tag jenkinsdockerimage:latest asaeed24/jenkins:latest'
-                bat 'docker push asaeed24/jenkins:latest'
+                withDockerRegistry([ credentialsId: 'dockertoken', url: '' ]) {
+                    bat 'docker tag jenkinsdockerimage:latest asaeed24/jenkins:latest'
+                    bat 'docker push asaeed24/jenkins:latest'
+                }
             }
         }
     }
