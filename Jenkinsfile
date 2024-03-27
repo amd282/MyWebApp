@@ -20,8 +20,8 @@ pipeline {
                     script {
                         def registry_url = "registry.hub.docker.com/"
                         bat "docker login -u ${USER} -p ${PASSWORD} ${registry_url}"
-                        bat "docker tag jenkinsdockerimage:latest asaeed24/jenkinsdockerimage:latest"
-                        bat "docker push asaeed24/jenkinsdockerimage:latest"
+                        bat "docker tag jenkinsdockerimage:latest jenkinspipeline/jenkinsdockerimage:latest"
+                        bat "docker push jenkinspipeline/jenkinsdockerimage:latest"
                     }
                 }
             }
