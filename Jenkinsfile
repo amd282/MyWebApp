@@ -10,7 +10,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image...'
-                bat 'docker build -t jenkinsDockerImage:latest .'
+                bat 'docker build -t jenkinsdockerimage:latest .'
             }
         }
         stage('Push Docker Image') {
