@@ -10,22 +10,19 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image...'
-                bat 'docker build -t asaeed24/devops:latest .'
-            }
-        }
-        stage('Login to Docker Hub') {
-            steps {
-                echo 'Logging in to Docker Hub...'
-                withCredentials([string(credentialsId: 'dockertoken', variable: 'DOCKER_HUB_TOKEN')]) {
-                    bat 'docker login -u arafa282 -p $DOCKER_HUB_TOKEN'
-                }
-
+                bat 'docker build -t asaeed24/mywebapp:latest .'
             }
         }
         stage('Push Docker Image') {
             steps {
                 echo 'Pushing Docker image to Docker Hub...'
-                bat "docker push asaeed24/devops:latest"
+                withCredentials([usernamePassword(credentialsId: 'newdokertoken', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
+                    script {
+                        def registry_url = "registry.hub.docker.com/"
+                        bat "docker login -u ${USER} -p ${PASSWORD} ${registry_url}"
+                        bat "docker push asaeed24/mywebapp:latest"
+                    }
+                }
             }
         }
     }
