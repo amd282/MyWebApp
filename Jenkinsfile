@@ -16,9 +16,9 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 echo 'Pushing Docker image to Docker Hub...'
-                withCredentials([string(credentialsId: 'githubToken', variable: 'DOCKER_HUB_TOKEN')]) {
-                    bat 'echo %DOCKER_HUB_TOKEN% | docker login -u arafa282 --password-stdin'
-                    bat 'docker tag jenkinsdockerimage:latest arafa282/jenkins:latest'
+                withCredentials([string(credentialsId: 'dockertoken', variable: 'DOCKER_HUB_TOKEN')]) {
+                    bat 'echo %DOCKER_HUB_TOKEN% | docker login -u amd282 --password-stdin'
+                    bat 'docker tag jenkinsdockerimage:latest amd282/jenkins:latest'
                     bat 'docker push arafa282/jenkins:latest'
                 }
             }
