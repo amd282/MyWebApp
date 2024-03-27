@@ -10,13 +10,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image...'
-                bat 'docker build -t jenkinsdockerimage:latest .'
-            }
-        }
-        stage('Tag Docker Image') {
-            steps {
-                echo 'Tagging Docker image...'
-                bat 'docker tag jenkinsdockerimage:latest asaeed24/jenkinspipeline:latest'
+                bat 'docker build -t asaeed24/devops .'
             }
         }
         stage('Push Docker Image') {
@@ -26,7 +20,7 @@ pipeline {
                     script {
                         def registry_url = "registry.hub.docker.com/"
                         bat "docker login -u ${USER} -p ${PASSWORD} ${registry_url}"
-                        bat "docker push asaeed24/jenkinspipeline:latest"
+                        bat "docker push asaeed24/devops"
                     }
                 }
             }
