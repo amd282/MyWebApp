@@ -18,9 +18,9 @@ pipeline {
                 echo 'Pushing Docker image to Docker Hub...'
                 withCredentials([usernamePassword(credentialsId: 'recenttoken', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
                     script {
-                        def registry_url = "docker.io/"
+                        def registry_url = "docker.io"
                         bat "docker login -u ${USER} -p ${PASSWORD} ${registry_url}"
-                        sh "docker push asaeed24/mywebapp:latest"
+                        bat "docker push asaeed24/mywebapp:latest"
                     }
                 }
             }
