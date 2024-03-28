@@ -18,9 +18,9 @@ pipeline {
                 echo 'Pushing Docker image to Docker Hub...'
                 withCredentials([usernamePassword(credentialsId: 'recenttoken', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
                     script {
-                        def registry_url = "registry-1.docker.io/"
-                        bat "docker login -u ${USER} -p ${PASSWORD} ${registry_url}"
-                        bat "docker push asaeed24/jenkinspipeline:latest"
+                        def registry_url = "docker.io/"
+                        sh "docker login -u ${USER} -p ${PASSWORD} ${registry_url}"
+                        sh "docker push asaeed24/jenkinspipeline:latest"
                     }
                 }
             }
